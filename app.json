@@ -2,6 +2,16 @@
   "expo": {
     "name": "Gintec",
     "slug": "Gintec",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Gintec to access your camera",
+          "microphonePermission": "Allow Gintec to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ]
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
