@@ -32,12 +32,14 @@ const Home = ({ navigation }) => {
             <Text style={{ ...styles.title2, alignSelf: 'flex-start', marginLeft: 30, marginBottom: 30 }}>Olá, seja Bem-Vindo</Text>
             <View style={{ height: 270, display: "flex", flexDirection: "row" }}>
                 <View style={{ alignItems: "center", justifyContent: "center", width: "50%", height: "100%" }}>
-                    <TouchableOpacity onPress={() => {navigation.navigate('FichaPessoal')}}>
-                    <Image source={require("../assets/fichaPessoal.png")} />
+                    <TouchableOpacity onPress={() => { navigation.navigate('FichaPessoal') }}>
+                        <Image source={require("../assets/fichaPessoal.png")} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: "center", justifyContent: "space-evenly", width: "50%", height: "100%" }}>
-                    <Image source={require("../assets/ranking.png")} />
+                    <TouchableOpacity onPress={() => {navigation.navigate("Ranking")}}>
+                        <Image source={require("../assets/ranking.png")} />
+                    </TouchableOpacity>
                     <Image source={require("../assets/perfil.png")} />
                 </View>
             </View>

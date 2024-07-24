@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, ActivityIndicator, FlatList, ImageBackground, TouchableOpacity, } from 'react-native';
+import { View, Image, Text, ActivityIndicator, FlatList, ImageBackground, TouchableOpacity, ScrollView, } from 'react-native';
 import styles from '../utils/styles';
 
 const FichaPessoal = ({ navigation }) => {
     return (
-        <View style={{ marginTop: 80 }}>
+        <ScrollView style={{ marginTop: 80 }}>
             <TouchableOpacity onPress={() => { navigation.navigate("Home") }}>
                 <Image source={require("../assets/voltar.png")} style={styles.voltar} />
             </TouchableOpacity>
@@ -16,22 +16,28 @@ const FichaPessoal = ({ navigation }) => {
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
-            <ImageBackground source={require("../assets/campeonatosquadra.png")} style={styles.jogos} imageStyle={styles.jogosImage}>
-                <View>
-                    <Text style={styles.jogoText}>Campeonatos {"\n"} de Quadra</Text>
-                </View>
-            </ImageBackground>
-            <ImageBackground source={require("../assets/campeonatospatio.png")} style={styles.jogos} imageStyle={styles.jogosImage}>
-                <View>
-                    <Text style={styles.jogoText}>Campeonatos {"\n"} de Pátio</Text>
-                </View>
-            </ImageBackground>
+            <TouchableOpacity onPress={() => { navigation.navigate("CampeonatoQuadra") }}>
+                <ImageBackground source={require("../assets/campeonatosquadra.png")} style={styles.jogos} imageStyle={styles.jogosImage}>
+                    <View>
+                        <Text style={styles.jogoText}>Campeonatos {"\n"} de Quadra</Text>
+                    </View>
+                </ImageBackground>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("CampeonatoPatio")}}>
+                <ImageBackground source={require("../assets/campeonatospatio.png")} style={styles.jogos} imageStyle={styles.jogosImage}>
+                    <View>
+                        <Text style={styles.jogoText}>Campeonatos {"\n"} de Pátio</Text>
+                    </View>
+                </ImageBackground>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Oficinas")}}>
             <ImageBackground source={require("../assets/oficinas.png")} style={styles.jogos} imageStyle={styles.jogosImage}>
                 <View>
                     <Text style={styles.jogoText}>Oficinas</Text>
                 </View>
             </ImageBackground >
-        </View >
+            </TouchableOpacity>
+        </ScrollView >
     );
 };
 

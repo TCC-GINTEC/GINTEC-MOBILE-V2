@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import httpClient from "../service/api";
 
-const Atividades = ({ navigation }) => {
+const CampeonatoPatio = ({ navigation }) => {
     const [isPendente, setIsPendente] = useState(true);
     const [loading, setLoading] = useState(true);
     const [activities, setActivities] = useState([]);
@@ -33,7 +33,7 @@ const Atividades = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate("FichaPessoal") }}>
                 <Image source={require("../assets/voltar.png")} style={styles.voltar} />
             </TouchableOpacity>
-            <Text style={{ ...styles.title2, marginTop: 30 }}>Ficha de Atividades</Text>
+            <Text style={{ ...styles.title2, marginTop: 30 }}>Ficha de Campeonatos de Pátio</Text>
             {isPendente ?
                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 35 }}>
                     <TouchableOpacity style={{ ...styles.button2, backgroundColor: "#FDD5D1" }}>
@@ -74,4 +74,4 @@ const Atividades = ({ navigation }) => {
     )
 }
 
-export default Atividades;
+export default CampeonatoPatio;

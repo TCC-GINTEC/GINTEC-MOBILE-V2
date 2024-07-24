@@ -2,21 +2,21 @@ import axios from 'axios';
 
 const httpClient = axios.create({
     //baseURL: 'https://api-faisca.online/Gintec'
-    baseURL: 'http://192.168.0.87:5019'
+    baseURL: 'http://192.168.0.25:5019'
     //baseURL: 'http://172.20.10.2:5019'
 
 });
 httpClient.interceptors.request.use(
-    async (config) => {             
+    async (config) => {
         return config;
     },
-    (error) => {        
+    (error) => {
     }
 );
 
 
-httpClient.interceptors.response.use(async (response) => {    
+httpClient.interceptors.response.use(async (response) => {
     return response
-}, async (error) => {    
+}, async (error) => {
 })
 export default httpClient;

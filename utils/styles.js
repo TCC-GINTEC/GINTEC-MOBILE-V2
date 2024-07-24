@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
         backgroundColor: '#ebebeb',
         justifyContent: 'center',
         alignItems: 'center',
-    },
+    },    
     title: {
         fontSize: 28,
         fontWeight: 'bold',
@@ -114,6 +114,8 @@ export default styles = StyleSheet.create({
     },
     backgroundImage: {
         width: "100%",
-        height: "100%"
+        height: "100%",
+        flex: 1,
+        resizeMode: 'cover'
     }
 });
