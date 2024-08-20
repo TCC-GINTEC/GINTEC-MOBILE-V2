@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Gintec",
-    "slug": "Gintec",
+    "slug": "gintec",
     "plugins": [
       [
         "expo-camera",
@@ -26,6 +26,9 @@
       "bundleIdentifier": "com.yourcompany.yourapp",
       "entitlements": {
         "aps-environment": "production"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
       }
     },
     "android": {
@@ -33,10 +36,25 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff",
         "googleServicesFile": "./google-services.json"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.etec.Gintec",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ef0b512d-1ad9-4aed-a9e6-561f6f364b2e"
+      }
+    },
+    "owner": "nathanzsilva",
+    "updates": {
+      "url": "https://u.expo.dev/ef0b512d-1ad9-4aed-a9e6-561f6f364b2e"
     }
   }
 }

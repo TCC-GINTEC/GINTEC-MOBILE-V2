@@ -5,7 +5,7 @@ export default styles = StyleSheet.create({
         backgroundColor: '#ebebeb',
         justifyContent: 'center',
         alignItems: 'center',
-    },    
+    },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
@@ -67,12 +67,12 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     button2: {
-        width: 150,        
+        width: 150,
         borderRadius: 30,
         paddingVertical: 14,
         alignItems: 'center',
     },
-    buttonText2: {        
+    buttonText2: {
         fontSize: 14,
         fontWeight: 'bold',
     },
@@ -97,11 +97,11 @@ export default styles = StyleSheet.create({
         marginLeft: 30,
     },
     jogos: {
-        marginTop: 31,        
+        marginTop: 31,
         height: 115,
         width: "90%",
         alignSelf: 'flex-end',
-        justifyContent: "center"        
+        justifyContent: "center"
     },
     jogosImage: {
         borderRadius: 15
@@ -110,12 +110,21 @@ export default styles = StyleSheet.create({
         color: "#ffff",
         marginLeft: 30,
         fontSize: 20,
-        fontWeight: '500'        
+        fontWeight: '500'
     },
     backgroundImage: {
         width: "100%",
         height: "100%",
         flex: 1,
         resizeMode: 'cover'
+    },
+    buttonScanner: {        
+        height: 50,
+        width: 139,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: 'space-around',
+        backgroundColor: "#FF4C4D",
+        borderRadius:15
     }
 });

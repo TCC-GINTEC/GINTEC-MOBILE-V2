@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
       });
   };
 
-  const handleSaveStorage = async (request, password) => {
+  const handleSaveStorage = async (request, password) => {  
     httpClient.defaults.headers.authorization = `Bearer ${request.token}`;
     AsyncStorage.setItem("email", request.email);
     AsyncStorage.setItem("password", password);

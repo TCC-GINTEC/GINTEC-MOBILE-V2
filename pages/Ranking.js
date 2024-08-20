@@ -1,15 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, ImageBackground, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import styles from '../utils/styles';
-
-const data = [
-    { id: '1', position: 5, name: '3º Administração', points: 85920 },
-    { id: '2', position: 6, name: '2º Informática', points: 78990 },
-    { id: '3', position: 7, name: '1º Recursos Humanos', points: 67740 },
-    { id: '4', position: 8, name: '2º Contabilidade', points: 60456 },
-];
+import httpClient from '../service/api';
 
 const Ranking = ({ navigation }) => {
+    const [rankingStudents, setRankingStudents] = useState([]);
+    const [ranking, setRanking] = useState([]);
+
+    useEffect(() => {
+        handleGetRanking();
+    }, [])
+
+    const handleGetRanking = async () => {
+        httpClient.get("/Usuario/ObterPontuacaoGeral").then((response) => {
+            setRankingStudents(response.data)
+
+                ;
+
+            const turmaPontuacaoGeral = response.data.reduce((acc, student) => {
+                const turma = student.turma;
+                const pontuacaoGeral = student.pontos.pontuacaGeral;
+
+
+                if (acc[turma])
+                    acc[turma] += pontuacaoGeral;
+                else
+                    acc[turma] = pontuacaoGeral;
+
+
+                return acc;
+            }, {});
+
+            setRanking(Object.entries(turmaPontuacaoGeral).map(([turma, pontuacaoGeral], index) => ({
+                position: index,
+                turma,
+                pontuacaoGeral
+            })));
+
+            console.log(Object.entries(turmaPontuacaoGeral).map(([turma, pontuacaoGeral], index) => ({
+                position: index + 1,
+                turma,
+                pontuacaoGeral
+            })))
+        })
+    }
     return (
         <ImageBackground style={styles.backgroundImage} source={require('../assets/RankingBG.png')}>
             <View style={{ marginTop: 80, height: "100%" }}>
@@ -41,23 +75,27 @@ const Ranking = ({ navigation }) => {
                         <Text style={style.rankPoints}>110.450</Text>
                     </View>
                 </View>
-                <View style={{ flex: 1, backgroundColor: "#fff", borderTopLeftRadius: 40, borderTopRightRadius: 40, justifyContent: "space-around", alignItems: "center", }}>
+                <View style={{ flex: 1,marginTop: -10,  backgroundColor: "#fff", borderTopLeftRadius: 20, borderTopRightRadius: 20, justifyContent: "space-around", alignItems: "center", }}>
                     <FlatList
-                        data={data}
+                        data={ranking}
                         keyExtractor={item => item.id}
-                        renderItem={({ item }) => (
-                            <View style={{ marginVertical: 10, width: "100%", paddingHorizontal: 60, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                <Text style={styles.itemText}>{item.position}º </Text>
-                                <View style={{ backgroundColor: "grey", width: 30, height: 30, borderRadius: 100 }}></View>
-                                <View style={{ width: 150 }}>
-                                    <Text style={styles.itemText}>{item.name}</Text>
+                        renderItem={({ item }) => {
+
+                            return (
+                                <View style={{ marginVertical: 10, width: "100%", paddingHorizontal: 60, display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                                    <Text style={styles.itemText}>{item.position}º </Text>
+                                    <View style={{ backgroundColor: "grey", width: 30, height: 30, borderRadius: 100 }}></View>
+                                    <View style={{ width: 150 }}>
+                                        <Text style={styles.itemText}>{item.turma}</Text>
+                                    </View>
+                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                                        <Image source={require("../assets/estrela.png")} style={{ height: 15, width: 15 }} />
+                                        <Text style={styles.itemPoints}>{item.pontuacaoGeral}</Text>
+                                    </View>
                                 </View>
-                                <View style={{ flexDirection: "row", alignItems: 'center' }}>
-                                    <Image source={require("../assets/estrela.png")} style={{ height: 15, width: 15 }} />
-                                    <Text style={styles.itemPoints}>{item.points}</Text>
-                                </View>
-                            </View>
-                        )}
+                            )
+                        }
+                        }
                     />
                 </View>
             </View>

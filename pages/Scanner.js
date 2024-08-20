@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, Image, TouchableOpacity } from 'react-native';
 import { Camera, CameraView } from 'expo-camera';
 import httpClient from '../service/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const MarcarPonto = ({ navigation }) => {
+const Scanner = ({ navigation }) => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
     useEffect(() => {
         (async () => {
+            await Camera.requestCameraPermissionsAsync();
             const { status } = await Camera.getCameraPermissionsAsync();
             setHasPermission(status === 'granted');
         })();
@@ -68,24 +69,29 @@ const MarcarPonto = ({ navigation }) => {
         return <Text>Solicitando permissão para usar a câmera</Text>;
     }
     if (hasPermission === false) {
-        return <Text>Sem acesso à câmera</Text>;
+        return <Text style={{ marginTop: 200, textAlign: "center" }}>Sem acesso à câmera</Text>;
     }
 
     return (
-        <View style={styles.container}>
-            <CameraView
-                onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
-                barcodeScannerSettings={{
-                    barcodeTypes: ["qr", "pdf417"],
-                }}
-                style={StyleSheet.absoluteFillObject}
-            />
-            {scanned && (
-                <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-            )}
+        <View style={{ marginTop: 80, height: "100%" }}>
+            <TouchableOpacity onPress={() => { navigation.navigate("MarcarPontos") }}>
+                <Image source={require("../assets/voltar.png")} style={styles.voltar} />
+            </TouchableOpacity>
+            <View style={{ marginTop: 40, flex: 1, backgroundColor: "red" }}>
+                <CameraView
+                    onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+                    barcodeScannerSettings={{
+                        barcodeTypes: ["qr", "pdf417"],
+                    }}
+                    style={StyleSheet.absoluteFillObject}
+                />
+                {scanned && (
+                    <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+                )}
+            </View>
         </View>
     );
 };
 
 
-export default MarcarPonto;
+export default Scanner;
