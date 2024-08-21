@@ -1,4 +1,4 @@
-package com.etec.Gintec
+package com.gintec
 
 import android.app.Application
 import android.content.res.Configuration

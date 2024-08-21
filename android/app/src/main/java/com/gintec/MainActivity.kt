@@ -1,4 +1,4 @@
-package com.etec.Gintec
+package com.gintec
 
 import android.os.Build
 import android.os.Bundle
